@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!-- PLDN×RSLT Mail | index.html | VERSION: mail-ui-v1 | LINES: 194 -->
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#050d1b">
+<title>PLDN×RSLT Mail</title>
+<style>
+:root{--bg:#050b17;--panel:#0b1729;--panel2:#0e2038;--line:rgba(104,177,255,.18);--blue:#238cff;--cyan:#45d6ff;--text:#f2f7ff;--muted:#91a9c7;--green:#47e0ae;--purple:#a68bff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100dvh;background:radial-gradient(ellipse at 50% -12%,#123e75 0%,#07152a 34%,var(--bg) 72%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}
+.app{max-width:520px;margin:auto;min-height:100dvh;position:relative;overflow:hidden;padding:18px 20px 96px}
+.topbar{display:flex;justify-content:flex-end;gap:10px;align-items:center;padding:4px 0 18px}
+.select-wrap{position:relative}
+select{appearance:none;background:#0c1b30;color:#dcecff;border:1px solid var(--line);border-radius:18px;padding:10px 30px 10px 13px;outline:none;font-size:13px;max-width:150px}
+.select-wrap:after{content:"⌄";position:absolute;right:12px;top:7px;color:var(--muted);pointer-events:none}
+.brand{text-align:center;padding:10px 0 24px}
+.logo{width:86px;height:86px;border-radius:28px;margin:0 auto 17px;display:grid;place-items:center;background:linear-gradient(145deg,#103d77,#071629 68%);border:1px solid #2365a5;box-shadow:0 0 42px #147fff30,inset 0 0 24px #268bff20;font-size:38px;color:#6bdfff;position:relative}
+.logo:after{content:"";position:absolute;inset:-7px;border-radius:32px;border:1px solid #238cff40;transform:rotate(8deg)}
+h1{font-size:29px;letter-spacing:-1px;margin:0;font-weight:800}h1 span{color:#2698ff} .subtitle{color:var(--muted);font-size:13px;margin:8px 0 0}
+.form{display:flex;flex-direction:column;gap:12px}
+.field{display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#0b1b30,#091426);border:1px solid var(--line);border-radius:19px;padding:0 14px;min-height:57px;transition:.2s}
+.field:focus-within{border-color:#278dff;box-shadow:0 0 0 3px #238cff16}
+.ico{font-size:19px;width:22px;text-align:center;color:#8ecaff;flex-shrink:0}
+.field input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:var(--text);font-size:14px;padding:16px 0}
+.field input::placeholder{color:#7892b3}
+.email-prefix{white-space:nowrap;color:#66caff;font-size:12px;font-weight:700}
+.note{color:var(--muted);font-size:12px;line-height:1.5;padding:0 5px}
+.primary{width:100%;border:0;border-radius:19px;padding:16px 18px;color:white;font-weight:750;background:linear-gradient(100deg,#1878f8,#269dff);box-shadow:0 8px 26px #167bff35;margin-top:5px}
+.primary:active{transform:scale(.99)}.secondary{background:#0d1d32;border:1px solid var(--line);color:#c9e3ff;border-radius:16px;padding:12px 16px}
+.footer{text-align:center;color:#6d88aa;font-size:11px;margin-top:25px}
+.screen{display:none;animation:fade .25s ease}.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.header{display:flex;align-items:center;justify-content:space-between;padding:10px 0 22px}
+.wordmark{font-weight:850;font-size:22px;letter-spacing:-.6px}.wordmark span{color:#289dff}
+.icon-btn{border:1px solid var(--line);background:#0b1a2d;color:#cce6ff;border-radius:14px;width:42px;height:42px;font-size:20px}
+.profile-card{display:flex;align-items:center;gap:13px;padding:16px;border-radius:22px;background:linear-gradient(120deg,#102b4b,#0b1729);border:1px solid var(--line);margin-bottom:14px}
+.avatar{width:49px;height:49px;display:grid;place-items:center;border-radius:17px;background:linear-gradient(145deg,#245e9d,#17304e);font-size:22px;font-weight:700;color:#bfe7ff}
+.small{font-size:12px;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}
+.status{margin-left:auto;color:var(--green);font-size:11px;background:#123b38;padding:6px 9px;border-radius:12px;white-space:nowrap}
+.menu-list{display:flex;flex-direction:column;gap:9px;margin-top:17px}
+.menu-item{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:15px;border:1px solid transparent;border-radius:17px;background:#0a1728;color:var(--text)}
+.menu-item:active,.menu-item.selected{background:#102849;border-color:#2267a3}
+.menu-ico{font-size:21px;width:27px;text-align:center}.menu-copy{flex:1}.menu-title{font-size:14px;font-weight:650}.menu-sub{font-size:11px;color:var(--muted);margin-top:3px}.chevron{color:#7897ba;font-size:21px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;background:#071221ed;backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:10px 10px calc(10px + env(safe-area-inset-bottom));z-index:5}
+.nav{border:0;background:none;color:#7189a8;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;min-width:65px}.nav b{font-size:21px;font-weight:500}.nav.active{color:#39aaff}
+.page-title{font-size:22px;font-weight:800;margin:4px 0 5px}.page-desc{font-size:13px;color:var(--muted);margin:0 0 20px;line-height:1.5}
+.code-card{display:flex;align-items:center;gap:12px;padding:15px;border-radius:18px;background:linear-gradient(120deg,#0c2038,#0a1728);border:1px solid var(--line);margin-bottom:10px}
+.code-icon{width:43px;height:43px;border-radius:14px;background:#12375c;display:grid;place-items:center;font-size:20px}
+.code-main{flex:1;min-width:0}.code-name{font-size:13px;font-weight:700}.code-value{font-size:20px;letter-spacing:2px;color:#76c8ff;margin:4px 0}.code-meta{font-size:11px;color:var(--muted)}.copy{border:1px solid var(--line);background:#10233b;color:#cfeaff;border-radius:11px;padding:9px;font-size:16px}
+.empty{text-align:center;padding:55px 20px;color:var(--muted)}.empty .big{font-size:48px;margin-bottom:15px}.empty strong{display:block;color:#e8f4ff;margin-bottom:8px}
+.toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#173858;border:1px solid #2d78b5;color:white;border-radius:14px;padding:12px 17px;font-size:13px;z-index:10;display:none;max-width:90%;text-align:center}
+.modal-bg{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:24px;z-index:20}
+.modal{max-width:360px;width:100%;padding:22px;border:1px solid var(--line);border-radius:24px;background:#0b192b;box-shadow:0 20px 80px #0008}.modal h3{margin:0 0 9px}.modal p{font-size:13px;color:var(--muted);line-height:1.5}.modal-actions{display:flex;gap:9px;margin-top:18px}.modal-actions button{flex:1}
+@media(min-width:480px){.app{padding-top:26px}.brand{padding-top:20px}.logo{width:94px;height:94px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <section id="login" class="screen active">
+    <div class="topbar">
+      <div class="select-wrap"><select id="language" aria-label="Til tanlash"><option value="uz">🌐 O‘zbekcha</option><option value="ru">🌐 Русский</option><option value="en">🌐 English</option></select></div>
+      <div class="select-wrap"><select id="country" aria-label="Mamlakat tanlash"><option value="UZ">🇺🇿 O‘zbekiston</option><option value="RU">🇷🇺 Россия</option><option value="GB">🇬🇧 United Kingdom</option><option value="TR">🇹🇷 Türkiye</option><option value="KZ">🇰🇿 Qozog‘iston</option></select></div>
+    </div>
+    <div class="brand">
+      <div class="logo">✉</div>
+      <h1>PLDN<span>×RSLT</span></h1>
+      <p class="subtitle" id="subtitle">Shaxsiy xavfsizlik pochtangiz</p>
+    </div>
+    <form id="loginForm" class="form">
+      <div class="field"><span class="ico">＠</span><input id="emailName" autocomplete="username" maxlength="32" placeholder="Email nomi" required><span class="email-prefix" id="mailDomain"></span></div>
+      <div class="field"><span class="ico">♙</span><input id="code" type="password" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="Tasdiqlash kodi" required></div>
+      <div class="field"><span class="ico">♧</span><input id="codeAgain" type="password" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="Kodni qayta kiriting" required></div>
+      <p class="note" id="hint">Email nomini kiriting va demo kirish uchun 6 xonali raqam tanlang. Bu bosqichda emailga kod yuborilmaydi; haqiqiy yuborish uchun server kerak.</p>
+      <button class="primary" type="submit" id="continueBtn">Davom etish <span aria-hidden="true">→</span></button>
+    </form>
+    <div class="footer">PLDN×RSLT — sizning raqamli dunyongiz<br>mail-ui-v1</div>
+  </section>
+
+  <section id="home" class="screen">
+    <div class="header"><div class="wordmark">PLDN<span>×RSLT</span></div><button class="icon-btn" id="searchBtn" aria-label="Qidirish">⌕</button></div>
+    <div class="profile-card"><div class="avatar" id="avatar">A</div><div style="min-width:0"><div id="welcome" style="font-weight:750">Xush kelibsiz!</div><div class="small" id="fullEmail">—</div></div><span class="status">● Faol</span></div>
+    <div class="profile-card" style="border-color:#235c50;background:linear-gradient(120deg,#10352f,#0b1b2b)"><div class="avatar" style="background:#174d43">✓</div><div><div style="font-weight:700;font-size:13px">Demo pochta tayyor</div><div class="small">Interfeys qurilmangizda ishlayapti</div></div></div>
+    <div class="menu-list">
+      <button class="menu-item" data-page="codes"><span class="menu-ico">▣</span><span class="menu-copy"><span class="menu-title">Kodlar</span><div class="menu-sub">PLDN tasdiqlash kodlari</div></span><span class="chevron">›</span></button>
+      <button class="menu-item" data-page="mail"><span class="menu-ico">✉</span><span class="menu-copy"><span class="menu-title">Xabarlar</span><div class="menu-sub">Ichki xavfsizlik xabarlari</div></span><span class="chevron">›</span></button>
+      <button class="menu-item" data-page="settings"><span class="menu-ico">⚙</span><span class="menu-copy"><span class="menu-title">Sozlamalar</span><div class="menu-sub">Til, mamlakat va xavfsizlik</div></span><span class="chevron">›</span></button>
+      <button class="menu-item" data-page="security"><span class="menu-ico">⬡</span><span class="menu-copy"><span class="menu-title">Xavfsizlik</span><div class="menu-sub">Email va kirish sozlamalari</div></span><span class="chevron">›</span></button>
+    </div>
+  </section>
+
+  <section id="codes" class="screen">
+    <div class="header"><button class="icon-btn back" aria-label="Orqaga">‹</button><div class="wordmark">Kodlar</div><button class="icon-btn" id="filterBtn" aria-label="Qidiruvni tozalash">✕</button></div>
+    <h2 class="page-title">Tasdiqlash kodlari</h2><p class="page-desc">PLDN xavfsizlik tizimidan kelgan kodlar shu yerda ko‘rinadi.</p>
+    <div class="field" style="margin-bottom:14px"><span class="ico">⌕</span><input id="codeSearch" placeholder="Kod yoki amalni qidirish"></div>
+    <div id="codeList"></div>
+    <div class="empty" id="codesEmpty"><div class="big">⌑</div><strong id="emptyTitle">Hozircha kodlar yo‘q</strong><span id="emptyText">Haqiqiy kodlar serverga ulangandan keyin keladi. Quyidagi demo kodlar namuna sifatida ko‘rsatiladi.</span></div>
+    <p class="note">⚠️ Demo kodlar haqiqiy kirish uchun ishlamaydi. Haqiqiy kodlarni server yaratib, emailga yuborishi kerak.</p>
+  </section>
+
+  <section id="mail" class="screen">
+    <div class="header"><button class="icon-btn back">‹</button><div class="wordmark">Xabarlar</div><button class="icon-btn" id="refreshBtn">↻</button></div>
+    <div class="empty"><div class="big">✉</div><strong>Hozircha xabarlar yo‘q</strong>PLDN xavfsizlik bildirishnomalari kelganda shu yerda ko‘rinadi.</div>
+  </section>
+
+  <section id="settings" class="screen">
+    <div class="header"><button class="icon-btn back">‹</button><div class="wordmark">Sozlamalar</div><span></span></div>
+    <h2 class="page-title">Ilova sozlamalari</h2><p class="page-desc">PLDN×RSLT ko‘rinishi va hisobingiz.</p>
+    <div class="menu-list">
+      <div class="menu-item"><span class="menu-ico">🌐</span><span class="menu-copy"><span class="menu-title">Til</span><div class="menu-sub" id="settingLang">O‘zbekcha</div></span></div>
+      <div class="menu-item"><span class="menu-ico">🏳️</span><span class="menu-copy"><span class="menu-title">Mamlakat</span><div class="menu-sub" id="settingCountry">O‘zbekiston</div></span></div>
+      <div class="menu-item"><span class="menu-ico">＠</span><span class="menu-copy"><span class="menu-title">Email manzili</span><div class="menu-sub" id="settingEmail">—</div></span></div>
+      <button class="menu-item" id="logout"><span class="menu-ico">↪</span><span class="menu-copy"><span class="menu-title" style="color:#ff777f">Demo seansdan chiqish</span><div class="menu-sub">Faqat ushbu qurilmadagi demo holati</div></span></button>
+    </div>
+  </section>
+
+  <section id="security" class="screen">
+    <div class="header"><button class="icon-btn back">‹</button><div class="wordmark">Xavfsizlik</div><span></span></div>
+    <h2 class="page-title">Akkaunt xavfsizligi</h2><p class="page-desc">Hozircha bu namoyish interfeysi. Haqiqiy tasdiqlash server orqali bajarilishi kerak.</p>
+    <div class="menu-list">
+      <div class="menu-item"><span class="menu-ico">✓</span><span class="menu-copy"><span class="menu-title">Email nomi</span><div class="menu-sub" id="securityEmail">—</div></span><span class="status">Demo</span></div>
+      <div class="menu-item"><span class="menu-ico">⌁</span><span class="menu-copy"><span class="menu-title">Kod himoyasi</span><div class="menu-sub">Server ulangach, bir martalik kodlar ishlaydi</div></span></div>
+      <div class="menu-item"><span class="menu-ico">📱</span><span class="menu-copy"><span class="menu-title">Ishonchli qurilmalar</span><div class="menu-sub">Keyingi bosqichda qo‘shiladi</div></span></div>
+    </div>
+  </section>
+
+  <nav class="bottom" id="bottomNav" style="display:none">
+    <button class="nav active" data-page="home"><b>⌂</b>Bosh sahifa</button>
+    <button class="nav" data-page="codes"><b>▣</b>Kodlar</button>
+    <button class="nav" data-page="settings"><b>♙</b>Profil</button>
+  </nav>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-bg" id="modalBg"><div class="modal"><h3 id="modalTitle">Eslatma</h3><p id="modalText"></p><div class="modal-actions"><button class="secondary" id="modalCancel">Bekor qilish</button><button class="primary" id="modalOk" style="margin:0">Tushunarli</button></div></div></div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const screens=$$('.screen');let currentPage='login';let currentEmail='';let modalAction=null;const MAIL_DOMAIN='@pldn.example';$('#mailDomain').textContent=MAIL_DOMAIN;
+const demoCodes = [
+ {type:'Akkauntga kirish', code:'482716', time:'Namuna · Hozir', state:'Demo'},
+ {type:'Yangi qurilmani tasdiqlash', code:'917203', time:'Namuna · Bugun', state:'Demo'},
+ {type:'Email manzilini tasdiqlash', code:'356842', time:'Namuna · Bugun', state:'Demo'}
+];
+function renderCodes(filter=''){
+ const list=$('#codeList'), empty=$('#codesEmpty');
+ const q=filter.trim().toLowerCase();
+ const items=demoCodes.filter(x=>(x.type+' '+x.code+' '+x.time).toLowerCase().includes(q));
+ list.innerHTML=items.map(x0=>{const x={type:esc(x0.type),code:esc(x0.code),time:esc(x0.time),state:esc(x0.state)};return `<div class="code-card"><div class="code-icon">🔐</div><div class="code-main"><div class="code-name">${x.type}</div><div class="code-value">${x.code}</div><div class="code-meta">${x.time} · ${x.state}</div></div><button class="copy" data-copy="${x.code}" aria-label="Demo kodni nusxalash">▢</button></div>`}).join('');
+ empty.style.display=items.length?'none':'block';
+ $('#emptyTitle').textContent=q?'Natija topilmadi':'Hozircha haqiqiy kodlar yo‘q';
+ $('#emptyText').textContent=q?'Boshqa so‘z yoki kod bilan qidirib ko‘ring.':'Haqiqiy kodlar serverga ulangandan keyin keladi. Yuqoridagi kodlar faqat demo namunalardir.';
+ list.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);toast('Demo kod nusxalandi. Haqiqiy tasdiqlash kodi emas.')}catch(e){toast('Kod: '+b.dataset.copy+' (demo)')}}));
+}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2600)}
+function showModal(title,msg,onOk){modalAction=onOk||null;$('#modalTitle').textContent=title;$('#modalText').textContent=msg;$('#modalBg').style.display='flex'}
+function go(page,fromPop){if(!fromPop&&page!==currentPage){try{(currentPage==='login'?history.replaceState:history.pushState).call(history,{p:page},'')}catch(e){}}screens.forEach(s=>s.classList.toggle('active',s.id===page));currentPage=page;$('#bottomNav').style.display=page==='login'?'none':'flex';$$('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===page));if(page==='codes')renderCodes($('#codeSearch')?.value||'');window.scrollTo({top:0,behavior:'smooth'})}
+function normalizeName(s){return s.trim().toLowerCase().replace(/[^a-z0-9._-]/g,'')}
+$('#loginForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=normalizeName($('#emailName').value),c=$('#code').value.trim(),c2=$('#codeAgain').value.trim();
+ if(name.length<3){toast('Email nomi kamida 3 ta belgidan iborat bo‘lsin.');return}
+ if(!/^[a-z0-9._-]{3,32}$/.test(name)){toast('Email nomida lotin harflari, raqam, nuqta, chiziqcha ishlating.');return}
+ if(!/^\d{6}$/.test(c)){toast('Demo kod 6 xonali raqam bo‘lishi kerak.');return}
+ if(c!==c2){toast('Kiritilgan kodlar bir xil emas.');$('#codeAgain').focus();return}
+ currentEmail=name+MAIL_DOMAIN;
+ try{localStorage.setItem('pldnMailDemoEmail',currentEmail)}catch(e){}
+ applyUser(currentEmail);
+ // This is a local UI prototype: no real mailbox or email code is created/sent.
+ go('home');
+ toast('Demo rejimi: bosh menyu ochildi.');
+});
+$$('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+$$('.back').forEach(b=>b.addEventListener('click',()=>{if(currentPage!=='home'&&history.state&&history.state.p===currentPage)history.back();else go('home')}));
+$('#language').addEventListener('change',()=>{if(currentPage!=='login')$('#settingLang').textContent=$('#language').selectedOptions[0].textContent});
+$('#country').addEventListener('change',()=>{if(currentPage!=='login')$('#settingCountry').textContent=$('#country').selectedOptions[0].textContent});
+$('#searchBtn').addEventListener('click',()=>{go('codes');setTimeout(()=>$('#codeSearch').focus(),60)});
+$('#filterBtn').addEventListener('click',()=>{$('#codeSearch').value='';renderCodes('');toast('Qidiruv tozalandi.')});
+$('#codeSearch').addEventListener('input',e=>renderCodes(e.target.value));
+$('#refreshBtn').addEventListener('click',()=>toast('Yangilandi. Demo rejimida haqiqiy xatlar kelmaydi.'));
+
+$('#logout').addEventListener('click',()=>showModal('Demo seansdan chiqish','Kirish ekraniga qaytishni xohlaysizmi?',doLogout));
+$('#modalCancel').addEventListener('click',()=>{modalAction=null;$('#modalBg').style.display='none'});
+$('#modalOk').addEventListener('click',()=>{$('#modalBg').style.display='none';const f=modalAction;modalAction=null;if(f)f()});
+renderCodes();
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function applyUser(email){const name=email.split('@')[0];currentEmail=email;$('#welcome').textContent=name;$('#avatar').textContent=name.charAt(0).toUpperCase();$('#fullEmail').textContent=email;$('#settingEmail').textContent=email;$('#securityEmail').textContent=email;$('#settingLang').textContent=$('#language').selectedOptions[0].textContent;$('#settingCountry').textContent=$('#country').selectedOptions[0].textContent}
+function doLogout(){try{localStorage.removeItem('pldnMailDemoEmail')}catch(e){}$('#loginForm').reset();currentEmail='';go('login',true);try{history.replaceState({p:'login'},'')}catch(e){}toast('Demo seans yopildi.')}
+window.addEventListener('popstate',e=>{const p=(e.state&&e.state.p)||'home';go(currentEmail?(p==='login'?'home':p):'login',true)});
+try{history.replaceState({p:'login'},'')}catch(e){}
+try{const saved=localStorage.getItem('pldnMailDemoEmail');if(saved&&saved.endsWith(MAIL_DOMAIN)){applyUser(saved);go('home')}}catch(e){}
+</script>
+</body>
+</html>
