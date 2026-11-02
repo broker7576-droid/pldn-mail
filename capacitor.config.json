@@ -1,10 +1,15 @@
 {
-  "_version": "mail-cap-v1",
-  "_lines": 10,
+  "_version": "mail-cap-v2",
+  "_lines": 15,
   "appId": "com.pldn.mail",
   "appName": "PLDN Mail",
   "webDir": "www",
   "server": {
     "androidScheme": "https"
+  },
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
   }
 }
